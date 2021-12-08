@@ -1,23 +1,21 @@
-from functions.lecture import *
 import math
 
-if __name__ == '__main__':
-    N, E, B, quantities = readData("datas/data1.dat")
+def base(B,E,quantities):
     sol = []
-    print(N, E, B, quantities)
-    # base = int(sum(quantities)/(B * E))
-    base = quantities[-1]
+    base = int(sum(quantities) / (B * E))
+    if base > quantities[-1]:
+        base = quantities[-1]
 
     val = [x // base for x in quantities]
     rest = [x % base for x in quantities]
 
     pack = sum(val)
-    average = math.ceil(pack/(B * E))
-    print(len(rest),rest)
+    print("len(rest),rest : ",len(rest),rest)
 
     #Box 1 with maximum value (multiple of base)
-    v1 = (pack - (B-2) * E) * base // E
-    r1 = (pack - (B-2) * E) * base % E
+    v1 = math.ceil((pack - (B-2) * E)/ E) * base
+    print("pack,v1 : ",pack,v1)
+    r1 = (pack - (B-2) * E) % E
     temp = []
     for i in range(r1):
         temp.append(v1)
@@ -33,20 +31,24 @@ if __name__ == '__main__':
         sol.append(temp)
 
     #Box B with rest
-    sol.append(sorted(rest,reverse=True))
+    #sol.append(sorted(rest,reverse=True))
+    sol.append(rest)
 
-    print("\nSolution :\n")
+    print("\nBase :\n")
     for i in range(B):
         print(sol[i])
+
+    for i in range(len(val)):
+        print("B{} :".format(i+1),val[i],rest[i])
 
     print("\n\nValue :")
     print(sum([sol[i][0] for i in range(B)]))
 
-
     print("\n\nVerif :")
-    print(sum([sum([x for x in j]) for j in sol]))
-    print(sum([sum([x for x in j]) for j in quantities]))
+    print("Init : ", sum(quantities))
+    print("Sol : ", sum([sum([x for x in j]) for j in sol]))
 
+    return sol,val,rest
 
 
 
