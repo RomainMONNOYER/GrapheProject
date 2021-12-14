@@ -1,29 +1,37 @@
 import math
 
+# From starting number, split max element in 2 to complete the box.
+# If number has already been cut, restart from original and cut it in 3,4,5,...
 def base(N,B,E,quantities):
-    temp = [(x,x) for x in quantities]
+    temp = [(quantities[i],i) for i in range(N)]
     decomp = {}
-    for num in quantities:
-        decomp[num] = 1
+    for i in range(N):
+        decomp[i] = 1
 
+    # While box is not full ...
     while len(temp) < B * E:
         temp = []
-        for k,v in decomp.items():
-            time = k % v
-            for i in range(time):
-                temp.append((math.ceil(k/v),k))
-            for i in range(v-time):
-                temp.append((int(k/v),k))
-        temp.sort(reverse=True)
+        # For each number ...
+        for i,v in decomp.items():
+            time = quantities[i] % v # Evaluate the number of part to make
+            for j in range(time):
+                temp.append((math.ceil(quantities[i]/v),i))
+            for j in range(v-time):
+                temp.append((int(quantities[i]/v),i))
+        temp.sort(key=lambda x: x[0],reverse=True)
 
         decomp[temp[0][1]] += 1
 
     sol = []
+    decomp = []
+
+    # Separate list in each box of lenght E
     for i in range(B):
         sol.append([x[0] for x in temp[i*E:(i+1)*E]])
 
+    # Evaluate score
     for num in quantities:
-        decomp[num] = [x[0] for x in temp if x[1] == num]
+        decomp.append((num,[x[0] for x in temp if quantities[x[1]] == num]))
 
     return sol,decomp
 

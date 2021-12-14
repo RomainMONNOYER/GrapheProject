@@ -1,10 +1,13 @@
+printdecomp = True
+
 
 def printsol(sol,decomp):
     #Print decomposition
-    i = 1
-    for k,v in decomp.items():
-        print(i,k,len(v)," ".join(map(str,v)))
-        i += 1
+    if printdecomp:
+        i = 1
+        for num in decomp:
+            print(i,num[0],len(num[1])," ".join(map(str,num[1])))
+            i += 1
 
     #Print Max value for each box
     for i in range(len(sol)):

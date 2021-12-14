@@ -1,17 +1,30 @@
 from lecture import *
-from src.functions.Solve.SplitMax import *
+from src.functions.Solve.BoxFiting import *
 
-script = "SplitMax"
+script = "BoxFiting"
 out = open("results/" + script + ".txt","w")
+result = [5243,8190,3897,9978,4966,15030,7194,239778,229428,226788]
 
 if __name__ == '__main__':
-    for i in range(1,11):
-        N, E, B, quantities = readData("../datas/data{}.dat".format(i))
+    print("--- Evaluating {} ---".format(script))
+    for i in range(1,10):
+        N,B,E,quantities = readData("../datas/data{}.dat".format(i))
 
-        BaseSol,decomp = base(B,E,quantities)
-        print("COST", sum([BaseSol[i][0] for i in range(len(BaseSol))]))
+        BaseSol,decomp = base(N,B,E,quantities)
+        cost = sum([BaseSol[i][0] for i in range(len(BaseSol))])
+        efficiency = 100*cost/result[i-1] - 100
 
-        out.write("data{} : ".format(i) + str(sum([BaseSol[i][0] for i in range(len(BaseSol))])) + "\n")
+        print("Data{}  | COST : {}, Efficiency : {} %".format(i,cost,round(efficiency,4)))
+        out.write("Data{}  | COST : {}, Efficiency : {} %\n".format(i,cost,round(efficiency,4)))
+
+    N, B, E, quantities = readData("../datas/data10.dat")
+
+    BaseSol, decomp = base(N, B, E, quantities)
+    cost = sum([BaseSol[i][0] for i in range(len(BaseSol))])
+    efficiency = 100 * cost / result[9] - 100
+
+    print("Data10 | COST : {}, Efficiency : {} %".format(cost, round(efficiency,4)))
+    out.write("Data10 | COST : {}, Efficiency : {} %\n".format(cost, round(efficiency,4)))
 
 out.close()
 

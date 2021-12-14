@@ -3,7 +3,7 @@ import math
 # From starting number, split max element in 2 to complete the box
 def base(N,B,E,quantities):
     sol = []
-    decomp = {}
+    decomp = []
     temp = [(x,x) for x in quantities]
 
     # While box is not full ...
@@ -20,7 +20,7 @@ def base(N,B,E,quantities):
 
     # Evaluate score
     for num in quantities:
-        decomp[num] = [x[0] for x in temp if x[1] == num]
+        decomp.append((num,[x[0] for x in temp if x[1] == num]))
 
     return sol,decomp
 
