@@ -41,7 +41,7 @@ def recursive_greedy(B,E,quantities,baseSol,val,rest):
         objective = sum([tempsol[i][0] for i in range(B)])
         if objective <= prevobjective:
             sol = tempsol
-        print("Value :",objective," Solve :",base)
+        print("Value :",objective," Base :",base)
 
         time.sleep(1)
 

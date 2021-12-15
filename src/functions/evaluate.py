@@ -1,5 +1,5 @@
 from lecture import *
-from src.functions.Solve.BoxFiting import *
+from src.functions.Base.BoxFiting import *
 
 script = "BoxFiting"
 out = open("results/" + script + ".txt","w")

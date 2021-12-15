@@ -34,7 +34,7 @@ def base(B,E,quantities):
     #sol.append(sorted(rest,reverse=True))
     sol.append(rest)
 
-    print("\nSolve :\n")
+    print("\nBase :\n")
     for i in range(B):
         print(sol[i])
 
