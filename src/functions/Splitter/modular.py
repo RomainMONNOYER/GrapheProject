@@ -1,9 +1,10 @@
 import math
 
-def evaluate(N, B, E, quantities, bases,depth):
+def evaluate(N,B,E,quantities,bases,depth):
     # Limit search space
-    if bases != sorted(bases):
+    if bases != sorted(bases,reverse=True):
         return False,False
+
 
     temp = [(quantities[i], i) for i in range(len(quantities))]
     sol = []
@@ -70,7 +71,6 @@ def evaluate(N, B, E, quantities, bases,depth):
     for i in range(occupation):
         sol.append(temp[E * i:E * (i + 1)])
 
-    print(sol)
 
     # If solution is acceptable, return it
     if sum([len(x) for x in sol]) == B * E:

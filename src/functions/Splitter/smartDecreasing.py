@@ -1,4 +1,8 @@
-def evaluate(N, B, E, quantities, bases):
+def evaluate(N, B, E, quantities, bases,depth):
+    # Limit search space
+    if bases != sorted(bases, reverse=True):
+        return False, False
+
     temp = [(quantities[i], i) for i in range(len(quantities))]
     sol = []
     decomp = [(num, []) for num in quantities]

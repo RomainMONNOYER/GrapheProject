@@ -1,7 +1,8 @@
 from lecture import *
 from src.functions.Base.BoxFiting import *
+from src.functions.Metaheuristics.recuit import *
 
-script = "BoxFiting"
+script = "localSearch-Recuit(100,0.9,1)"
 out = open("results/" + script + ".txt","w")
 result = [5243,8190,3897,9978,4966,15030,7194,239778,229428,226788]
 
@@ -11,6 +12,8 @@ if __name__ == '__main__':
         N,B,E,quantities = readData("../datas/data{}.dat".format(i))
 
         BaseSol,decomp = base(N,B,E,quantities)
+
+        BaseSol,decomp = run(N,B,E,quantities,BaseSol,decomp)
         cost = sum([BaseSol[i][0] for i in range(len(BaseSol))])
         efficiency = 100*cost/result[i-1] - 100
 

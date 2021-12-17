@@ -2,7 +2,7 @@ from functions.lecture import *
 from functions.printSol import *
 from src.functions.Base.CutMax import *
 from functions.Splitter.smartDecreasing import *
-from functions.Metaheuristics.recuit import *
+from functions.Metaheuristics.localSearch import *
 
 if __name__ == '__main__':
     N,B,E,quantities = readData("datas/data1.dat")

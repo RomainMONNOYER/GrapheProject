@@ -8,7 +8,7 @@ def run(N,B,E,quantities,sol,decomp):
     step = 1
     T = 100
     alpha = 0.9
-    epsilon = 50
+    epsilon = 1
     V = [True]
 
     while T >= epsilon:
@@ -31,7 +31,7 @@ def run(N,B,E,quantities,sol,decomp):
                 V.append((cost, tempsol, tempdecomp))
 
         if V:
-            selected = random.choices(V,weights=(2**(value - x[0]) for x in V))
+            selected = random.choices(V,weights=(2**(value - x[0]) for x in V))[0]
 
             if selected[0] <= value or random.random() < 2**(value - selected[0]):
                 sol,decomp = selected[1],selected[2]
