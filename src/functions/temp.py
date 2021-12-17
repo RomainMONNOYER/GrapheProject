@@ -1,4 +1,2 @@
-a = (12,[12,13])
-a[1] += [14,15]
-print(a)
-
+for i in range(-1):
+    print("a")
