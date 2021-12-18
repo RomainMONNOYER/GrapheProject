@@ -20,12 +20,26 @@ def evaluate(N, B, E, quantities, bases,depth):
 
             if temp: # We take base from max number to complete the box
                 currentbox.append(base)
-                decomp[rest[k][1]][1].append(base)
-                rest[k] = (rest[k][0] - base, rest[k][1])
+
+                # Search temp[k] in rest
+                id = temp[k][1]
+                pos = 0
+                while rest[k][1] != id:
+                    pos += 1
+
+                decomp[rest[pos][1]][1].append(base)
+                rest[k] = (rest[pos][0] - base, rest[k][1])
             else :   # or the number if it's smaller than the base
-                currentbox.append(rest[k][0])
-                decomp[rest[k][1]][1].append(rest[k][0])
-                rest[k] = (0, rest[k][1])
+                currentbox.append(temp[k][0])
+
+                # Search temp[k] in rest
+                id = temp[k][1]
+                pos = 0
+                while rest[k][1] != id:
+                    pos += 1
+
+                decomp[rest[pos][1]][1].append(rest[pos][0])
+                rest[pos] = (0, rest[pos][1])
 
         # If box is not full, fill it with 0
         if len(currentbox) < E:

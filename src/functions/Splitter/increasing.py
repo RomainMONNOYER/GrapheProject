@@ -11,17 +11,32 @@ def evaluate(N, B, E, quantities, bases,depth):
         base = bases[i]
         currentbox = []
         for j in range(E):
-            temp = sorted([x for x in rest if x[0] >= base],reverse=True)
+            rest = sorted([x for x in rest if x[0] != 0],reverse=True)
+            temp = [x for x in rest if x[0] >= base]
             k = -1
 
             if temp: # We take base from max number to complete the box
                 currentbox.append(base)
-                decomp[temp[k][1]][1].append(base)
-                temp[k] = (temp[k][0] - base, temp[k][1])
-            elif temp[k][0] != 0:   # or the number if it's smaller than the base
+
+                # Search temp[k] in rest
+                id = temp[k][1]
+                pos = 0
+                while rest[k][1] != id:
+                    pos += 1
+
+                decomp[rest[pos][1]][1].append(base)
+                rest[k] = (rest[pos][0] - base, rest[k][1])
+            else :   # or the number if it's smaller than the base
                 currentbox.append(temp[k][0])
-                decomp[temp[k][1]][1].append(temp[k][0])
-                temp[k] = (0, temp[k][1])
+
+                # Search temp[k] in rest
+                id = temp[k][1]
+                pos = 0
+                while rest[k][1] != id:
+                    pos += 1
+
+                decomp[rest[pos][1]][1].append(rest[pos][0])
+                rest[pos] = (0, rest[pos][1])
 
         # If box is not full, fill it with 0
         if len(currentbox) < E:
