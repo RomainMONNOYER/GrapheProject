@@ -20,7 +20,7 @@ def run(N,B,E,quantities,sol,decomp):
             tempsol,tempdecomp = evaluate(N,B,E,quantities,tempbase,3)
 
             if tempsol:
-                cost = sum([sol[i][0] for i in range(len(tempsol))])
+                cost = sum([tempsol[i][0] for i in range(len(tempsol))])
                 V.append((cost,tempsol,tempdecomp))
 
             tempbase = base

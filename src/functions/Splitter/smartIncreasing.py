@@ -24,26 +24,27 @@ def evaluate(N, B, E, quantities, bases,depth):
                 # Search temp[k] in rest
                 id = temp[k][1]
                 pos = 0
-                while rest[k][1] != id:
+                while rest[pos][1] != id:
                     pos += 1
 
                 decomp[rest[pos][1]][1].append(base)
                 rest[k] = (rest[pos][0] - base, rest[k][1])
             else :   # or the number if it's smaller than the base
-                currentbox.append(temp[k][0])
+                temp = sorted([x for x in rest if x[0] != 0],reverse=True)
 
-                # Search temp[k] in rest
-                id = temp[k][1]
-                pos = 0
-                while rest[k][1] != id:
-                    pos += 1
+                if temp:
+                    currentbox.append(temp[k][0])
 
-                decomp[rest[pos][1]][1].append(rest[pos][0])
-                rest[pos] = (0, rest[pos][1])
+                    # Search temp[k] in rest
+                    id = temp[k][1]
+                    pos = 0
+                    while rest[pos][1] != id:
+                        pos += 1
 
-        # If box is not full, fill it with 0
-        if len(currentbox) < E:
-            currentbox += [0] * (E - len(currentbox))
+                    decomp[rest[pos][1]][1].append(rest[pos][0])
+                    rest[pos] = (0, rest[pos][1])
+                else:
+                    currentbox.append(0)
 
         sol.append(currentbox)
 

@@ -1,3 +1,8 @@
-import random
+def yolo(arg):
 
-print(random.random())
+    arg += 2
+
+    return arg
+
+
+print(yolo(2))

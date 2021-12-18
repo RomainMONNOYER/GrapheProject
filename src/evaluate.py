@@ -1,8 +1,8 @@
-from lecture import *
+from src.functions.lecture import *
 from src.functions.Base.BoxFiting import *
 from src.functions.Metaheuristics.localSearch import *
 
-script = "localSearch-SI"
+script = "localSearch-Adaptative"
 out = open("results/" + script + ".txt","w")
 result = [5243,8190,3897,9978,4966,15030,7194,239778,229428,226788]
 

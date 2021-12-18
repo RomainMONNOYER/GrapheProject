@@ -1,4 +1,4 @@
-from ..Splitter.smartDecreasing import *
+from ..Splitter.adaptative import *
 
 def run(N,B,E,quantities,sol,decomp):
     # Setup s
@@ -15,7 +15,7 @@ def run(N,B,E,quantities,sol,decomp):
             tempsol,tempdecomp = evaluate(N,B,E,quantities,tempbase,B-1)
 
             if tempsol:
-                cost = sum([sol[i][0] for i in range(len(tempsol))])
+                cost = sum([tempsol[i][0] for i in range(len(tempsol))])
                 if cost <= value: # Store if value is equal or best
                     V.append((cost,tempsol,tempdecomp,tempbase))
 

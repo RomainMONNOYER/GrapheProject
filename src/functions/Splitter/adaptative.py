@@ -1,3 +1,6 @@
+import math
+
+
 def evaluate(N, B, E, quantities, bases,depth):
     # Limit search space
     if bases != sorted(bases, reverse=True):
@@ -7,8 +10,10 @@ def evaluate(N, B, E, quantities, bases,depth):
     sol = []
     decomp = [(num, []) for num in quantities]
 
-    for i in range(len(bases)): # For each boxes
-        base = bases[i]
+    boxfilled = 0
+
+    while boxfilled < B - math.ceil(len(rest)/E): # While there's enought boxes to decompose belong a base
+        base = bases[boxfilled]
         currentbox = []
         for j in range(E):
             rest = sorted([x for x in rest if x[0] != 0],reverse=True)
@@ -46,12 +51,27 @@ def evaluate(N, B, E, quantities, bases,depth):
                 else:
                     currentbox.append(0)
 
+        rest = sorted([x for x in rest if x[0] != 0], reverse=True)
         sol.append(currentbox)
+        boxfilled += 1
 
-    # If any rest remain, add to sol for analysing
-    rest = [x[0] for x in rest if x[0] != 0]
-    if rest:
-        sol.append(rest)
+    if len(rest) < E * math.ceil(len(rest)/E):
+        n = E * math.ceil(len(rest)/E) - len(rest)
+        base = rest[n][0]
+        for i in range(n):
+            rest[i] = (rest[i][0] - base,rest[i][1])
+            rest.append((base,rest[i][1]))
+
+        for num in rest:
+            decomp[num[1]][1].append(num[0])
+
+        for i in range(math.ceil(len(rest)/E)):
+            sol.append([x[0] for x in rest[E*i : E*(i+1)]])
+
+    else:
+        sol.append([x[0] for x in rest])
+        for num in rest:
+            decomp[num[1]][1].append(num[0])
 
     # If solution is acceptable, return it
     if sum([len(x) for x in sol]) == B * E:

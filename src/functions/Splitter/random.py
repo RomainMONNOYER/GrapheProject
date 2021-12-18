@@ -1,3 +1,5 @@
+import random
+
 def evaluate(N, B, E, quantities, bases,depth):
     # Limit search space
     if bases != sorted(bases, reverse=True):
@@ -13,7 +15,12 @@ def evaluate(N, B, E, quantities, bases,depth):
         for j in range(E):
             rest = sorted([x for x in rest if x[0] != 0],reverse=True)
             temp = [x for x in rest if x[0] >= base]
-            k = 0
+
+            # Select random element from list of elem >= base
+            if temp:
+                k = random.randint(0,len(temp)-1)
+            else:
+                k = 0
             for l in range(len(temp)):  # If any number is a multiple of base, focus it
                 if temp[l][0] % base == 0 and temp[l][0] != 0:
                     k = l

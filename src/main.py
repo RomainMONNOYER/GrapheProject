@@ -5,7 +5,7 @@ from functions.Splitter.smartIncreasing import *
 from functions.Metaheuristics.localSearch import *
 
 if __name__ == '__main__':
-    N,B,E,quantities = readData("datas/data6.dat")
+    N,B,E,quantities = readData("datas/data10.dat")
     sol,decomp = base(N,B,E,quantities)
 
     printsol(sol,decomp)

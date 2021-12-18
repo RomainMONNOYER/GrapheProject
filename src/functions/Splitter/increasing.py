@@ -21,7 +21,7 @@ def evaluate(N, B, E, quantities, bases,depth):
                 # Search temp[k] in rest
                 id = temp[k][1]
                 pos = 0
-                while rest[k][1] != id:
+                while rest[pos][1] != id:
                     pos += 1
 
                 decomp[rest[pos][1]][1].append(base)
@@ -32,7 +32,7 @@ def evaluate(N, B, E, quantities, bases,depth):
                 # Search temp[k] in rest
                 id = temp[k][1]
                 pos = 0
-                while rest[k][1] != id:
+                while rest[pos][1] != id:
                     pos += 1
 
                 decomp[rest[pos][1]][1].append(rest[pos][0])
