@@ -2,13 +2,12 @@ import random
 from ..Splitter.smartDecreasing import *
 
 
-def run(N,B,E,quantities,sol,decomp):
+def run(N,B,E,quantities,sol,decomp, alpha = 0.93):
     # Setup s
     base = [x[0] for x in sol]
     value = sum(base)
     step = 1
     T = 100
-    alpha = 0.9
     epsilon = 1
     V = [True]
 
