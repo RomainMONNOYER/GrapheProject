@@ -1,8 +1,4 @@
-def yolo(arg):
+import itertools
+lst = list(itertools.product([0, 1], repeat=5))
 
-    arg += 2
-
-    return arg
-
-
-print(yolo(2))
+print([list(x) for x in lst[1:]])

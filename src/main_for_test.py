@@ -1,11 +1,11 @@
 from functions.lecture import *
-from functions.Base.SplitMax import *
+from functions.Base.BoxFiting import *
 from functions.Splitter.smartIncreasing import *
-from functions.Metaheuristics.localSearch import *
+from functions.Metaheuristics.recuitGlobal import *
 from functions.printSol import *
 
 if __name__ == '__main__':
-    N,B,E,quantities = readData("datas/data4.dat")
+    N,B,E,quantities = readData("datas/data1.dat")
     sol,decomp = base(N,B,E,quantities)
     printsol(sol, decomp)
 
