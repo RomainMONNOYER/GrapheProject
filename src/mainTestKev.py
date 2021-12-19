@@ -66,11 +66,15 @@ if __name__ == '__main__':
                 begin = time.time()
 
                 print("\n============================================SAR-TABOU=========================================")
+                for _ in range(5):
+                    prevBest = {"best": sum([s[0] for s in sol2]), "sol": sol2, "decomp":decomp2}
+                    for i in range(10):
+                        sol3, decomp3 = SARtabou.run(N, B, E, quantities, sol2, decomp2, minStep = 1, maxStep = i+1)
+                        if sum([s[0] for s in sol3]) < prevBest["best"]:
+                            prevBest = {"best": sum([s[0] for s in sol3]), "sol": sol3, "decomp":decomp3}
 
-                for i in range(20):
-                    sol3, decomp3 = SARtabou.run(N, B, E, quantities, sol2, decomp2, minStep = 1, maxStep = i+1)
-                    if sum([s[0] for s in sol3]) < sum([s[0] for s in sol2]):
-                        sol2, decomp2 = sol3, decomp3
+                    if prevBest["best"] < sum([s[0] for s in sol2]):
+                        sol2, decomp2 = prevBest["sol"], prevBest["decomp"]
 
                 print("COST",  sum([s[0] for s in sol2]))
                 print("time:", time.time() - begin)
