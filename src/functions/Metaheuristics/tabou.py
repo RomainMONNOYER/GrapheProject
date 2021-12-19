@@ -1,14 +1,12 @@
 from ..Splitter.adaptative import *
 
-def run(N,B,E,quantities,sol,decomp):
+def run(N,B,E,quantities,sol,decomp, step = 1, threshold = 2):
     # Setup s
     base = [x[0] for x in sol]
     value = sum(base)
     V = [(value,sol,decomp,base)] # fake s' (= s)
-    step = 1
 
     up = 0
-    threshold = 2
     tabou = []
     N = 10
 

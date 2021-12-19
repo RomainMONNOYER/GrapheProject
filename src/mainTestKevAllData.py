@@ -9,15 +9,13 @@ import functions.Metaheuristics.tabou as tabou
 import time
 
 if __name__ == '__main__':
-    data = [{"id":i+1,"cost": 0, "time":0 } for i in range(10)]
+    best = [5243,8190,3897,9978,4966,15030,7194,239778,229428,226788]
+    data = [{"id":i+1,"cost": 0, "time":0, "best":best[i]} for i in range(10)]
 
-    for i in range(10):
+    for d in range(10):
         TrueBegin = time.time()
-        N,B,E,quantities = readData("datas/data"+str(data[i]["id"])+ ".dat")
+        N,B,E,quantities = readData("datas/data"+str(data[d]["id"])+ ".dat")
         sol,decomp = base(N,B,E,quantities)
-
-        printsol(sol,decomp)
-        #print("COST", sum([sol[i][0] for i in range(len(sol))]))
 
         while True:
             Prev = sum([s[0] for s in sol])
@@ -25,21 +23,28 @@ if __name__ == '__main__':
             while True:
                 Prev1 = sum([s[0] for s in sol1])
                 sol2, decomp2 = sol1, decomp1
+                compteur = 0
                 while True:
+                    compteur += 1
                     Prev2 = sum([s[0] for s in sol2])
-                    sol3, decomp3 = sol2, decomp2
                     begin = time.time()
-                    sol3, decomp3 = tabou.run(N, B, E, quantities, sol3, decomp3)
 
-                    print("\n============================================TABOU=========================================")
-                    print("COST",  sum([s[0] for s in sol3]))
+                    print(
+                        "\n============================================TABOU=========================================")
+
+                    for i in range(20):
+                        sol3, decomp3 = tabou.run(N, B, E, quantities, sol2, decomp2, step=1 + i)
+                        if sum([s[0] for s in sol3]) < Prev2:
+                            sol2, decomp2 = sol3, decomp3
+
+                    print("COST", sum([s[0] for s in sol2]))
                     print("time:", time.time() - begin)
 
-                    if  sum([s[0] for s in sol3]) >= Prev2:
+                    if sum([s[0] for s in sol2]) >= Prev2:
                         break
-                    sol2, decomp2 = sol3, decomp3
 
-                print("\n============================================LOCAL SEARCH=========================================")
+                print(
+                    "\n============================================LOCAL SEARCH=========================================")
                 begin = time.time()
                 sol2, decomp2 = localSearch.run(N, B, E, quantities, sol2, decomp2)
                 # printsol(sol1,decomp1)
@@ -60,7 +65,6 @@ if __name__ == '__main__':
             print("time:", time.time()-begin)
             """
 
-
             if sum([s[0] for s in sol1]) >= Prev:
                 print("No amelioration possible...")
                 break
@@ -74,7 +78,8 @@ if __name__ == '__main__':
         printsol(sol,decomp)
         print("Total Run time: ", - TrueBegin + time.time())
 
-        data[i]["cost"] = sum([s[0] for s in sol])
-        data[i]["time"] = - TrueBegin + time.time()
+        data[d]["cost"] = sum([s[0] for s in sol])
+        data[d]["time"] = time.time() - TrueBegin
+        data[d]["%"] = (data[d]["cost"]-data[d]["best"])/data[d]["best"]*100
 
     [print(d) for d in data]
