@@ -1,0 +1,10 @@
+Data1  | COST : 5424, Efficiency : 3.4522 %
+Data2  | COST : 9298, Efficiency : 13.5287 %
+Data3  | COST : 4013, Efficiency : 2.9766 %
+Data4  | COST : 10460, Efficiency : 4.8306 %
+Data5  | COST : 5123, Efficiency : 3.1615 %
+Data6  | COST : 18318, Efficiency : 21.8762 %
+Data7  | COST : 7586, Efficiency : 5.449 %
+Data8  | COST : 251661, Efficiency : 4.9558 %
+Data9  | COST : 234478, Efficiency : 2.2011 %
+Data10 | COST : 230371, Efficiency : 1.5799 %

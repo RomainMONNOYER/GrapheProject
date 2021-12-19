@@ -12,12 +12,12 @@ def run(N,B,E,quantities,sol,decomp):
         for i in range(B): # Evaluate each canonic variation of the base (negative)
             tempbase = [x for x in base]
             tempbase[i] -= step
-            tempsol,tempdecomp = evaluate(N,B,E,quantities,tempbase,B-1)
+            tempsol,tempdecomp = evaluate(N,B,E,quantities,tempbase,B-2)
 
             if tempsol:
                 cost = sum([tempsol[i][0] for i in range(len(tempsol))])
-                if cost <= value: # Store if value is equal or best
-                    V.append((cost,tempsol,tempdecomp,tempbase))
+                if cost <= value and cost <= sum(tempbase): # Store if value is equal or best
+                    V.append((cost,tempsol,tempdecomp,[x[0] for x in tempsol]))
 
         if V:
             V.sort(key=lambda x:x[0])

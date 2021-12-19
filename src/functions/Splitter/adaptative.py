@@ -55,18 +55,21 @@ def evaluate(N, B, E, quantities, bases,depth):
         sol.append(currentbox)
         boxfilled += 1
 
-    if len(rest) < E * math.ceil(len(rest)/E):
+    if len(rest) <= E * math.ceil(len(rest)/E):
         n = E * math.ceil(len(rest)/E) - len(rest)
         base = rest[n][0]
         for i in range(n):
             rest[i] = (rest[i][0] - base,rest[i][1])
             rest.append((base,rest[i][1]))
 
+        rest.sort(reverse=True)
+
         for num in rest:
             decomp[num[1]][1].append(num[0])
 
         for i in range(math.ceil(len(rest)/E)):
             sol.append([x[0] for x in rest[E*i : E*(i+1)]])
+
 
     else:
         sol.append([x[0] for x in rest])

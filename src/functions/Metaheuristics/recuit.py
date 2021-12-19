@@ -1,5 +1,5 @@
 import random
-from ..Splitter.modular import *
+from ..Splitter.smartDecreasing import *
 
 
 def run(N,B,E,quantities,sol,decomp):

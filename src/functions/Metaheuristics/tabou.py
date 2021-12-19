@@ -1,4 +1,4 @@
-from ..Splitter.smartDecreasing import *
+from ..Splitter.adaptative import *
 
 def run(N,B,E,quantities,sol,decomp):
     # Setup s
