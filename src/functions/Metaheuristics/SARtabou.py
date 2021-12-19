@@ -1,10 +1,7 @@
 from ..Splitter.adaptative import *
 import random
 
-def run(N,B,E,quantities,sol,decomp, minStep = 1, maxStep = 1, threshold = 2):
-    if maxStep < minStep:
-        maxStep = minStep
-
+def run(N,B,E,quantities,sol,decomp, minStep = 1, maxStep = 10, threshold = 2):
     # Setup s
     base = [x[0] for x in sol]
     value = sum(base)
@@ -15,7 +12,7 @@ def run(N,B,E,quantities,sol,decomp, minStep = 1, maxStep = 1, threshold = 2):
     N = 10
 
     while up < threshold: # While answer is not stuck for to long
-        step = random.randint(minStep, maxStep)
+        step = random.randint(minStep, max(maxStep, minStep))
         # Affect s' to s
         sol, decomp = V[0][1], V[0][2]
         value = V[0][0]
