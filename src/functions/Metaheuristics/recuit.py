@@ -1,8 +1,8 @@
 import random
-from ..Splitter.smartDecreasing import *
+from ..Splitter.adaptative import *
 
 
-def run(N,B,E,quantities,sol,decomp, alpha = 0.93, epsilon = 10**-3):
+def run(N,B,E,quantities,sol,decomp, alpha = 0.98, epsilon = 10**-3):
     # Setup s
     base = [x[0] for x in sol]
     value = sum(base)
