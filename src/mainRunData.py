@@ -26,8 +26,8 @@ if __name__ == '__main__':
     #AllSol.append({"sol":sol, "decomp":decomp, "cost":sum([s[0] for s in sol])})
 
     #RG_SAR_SAP_LSG
-    #sol,decomp,_ = potion3.runPotion(N,B,E,quantities)
-    #AllSol.append({"sol":sol, "decomp":decomp, "cost":sum([s[0] for s in sol])})
+    sol,decomp,_ = potion3.runPotion(N,B,E,quantities)
+    AllSol.append({"sol":sol, "decomp":decomp, "cost":sum([s[0] for s in sol])})
 
     #SAR_SAP_LS
     sol,decomp,_ = potion4.runPotion(N,B,E,quantities)

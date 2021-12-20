@@ -14,7 +14,7 @@ def runPotion(N,B,E,quantities):
     TrueBegin = time.time()
     sol,decomp = base(N,B,E,quantities)
 
-    print("============================================RECUIT=========================================")
+    print("============================================RECUIT GLOBAL=========================================")
     begin = time.time()
     sol, decomp = recuit.run(N, B, E, quantities, sol, decomp)
     #print("COST", sum([s[0] for s in sol]))
