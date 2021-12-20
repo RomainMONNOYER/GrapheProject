@@ -14,11 +14,11 @@ def runPotion(N,B,E,quantities):
     TrueBegin = time.time()
     sol,decomp = base(N,B,E,quantities)
 
-    print("\n============================================RECUIT=========================================")
+    print("============================================RECUIT=========================================")
     begin = time.time()
     sol, decomp = recuit.run(N, B, E, quantities, sol, decomp)
-    print("COST", sum([s[0] for s in sol]))
-    print("time:", time.time() - begin)
+    #print("COST", sum([s[0] for s in sol]))
+    #print("time:", time.time() - begin)
 
     while True:
         Prev = sum([s[0] for s in sol])
@@ -33,8 +33,7 @@ def runPotion(N,B,E,quantities):
                 Prev2 = sum([s[0] for s in sol2])
                 begin = time.time()
 
-                print(
-                    "\n============================================SAR-TABOU=========================================")
+                print("============================================SAR-TABOU=========================================")
                 for _ in range(5):
                     prevBest = {"best": sum([s[0] for s in sol2]), "sol": sol2, "decomp": decomp2}
                     for i in range(10):
@@ -45,8 +44,8 @@ def runPotion(N,B,E,quantities):
                     if prevBest["best"] < sum([s[0] for s in sol2]):
                         sol2, decomp2 = prevBest["sol"], prevBest["decomp"]
 
-                print("COST", sum([s[0] for s in sol2]))
-                print("time:", time.time() - begin)
+                #print("COST", sum([s[0] for s in sol2]))
+                #print("time:", time.time() - begin)
 
                 if sum([s[0] for s in sol2]) >= Prev2:
                     break
@@ -57,32 +56,29 @@ def runPotion(N,B,E,quantities):
                 Prev2 = sum([s[0] for s in sol2])
                 begin = time.time()
 
-                print(
-                    "\n============================================SAP-TABOU=========================================")
+                print("============================================SAP-TABOU=========================================")
 
                 for i in range(20):
                     sol3, decomp3 = tabou.run(N, B, E, quantities, sol2, decomp2, step=1 + i)
                     if sum([s[0] for s in sol3]) < sum([s[0] for s in sol2]):
                         sol2, decomp2 = sol3, decomp3
 
-                print("COST", sum([s[0] for s in sol2]))
-                print("time:", time.time() - begin)
+                #print("COST", sum([s[0] for s in sol2]))
+                #print("time:", time.time() - begin)
 
                 if sum([s[0] for s in sol2]) >= Prev2:
                     break
 
             sol1, decomp1 = sol2, decomp2
-            print(
-                "\n============================================LOCAL SEARCH=========================================")
+            print("============================================LOCAL SEARCH=========================================")
             begin = time.time()
             sol2, decomp2 = localSearch.run(N, B, E, quantities, sol1, decomp1, step=1)
 
             if sum([s[0] for s in sol2]) < sum([s[0] for s in sol1]):
                 sol1, decomp1 = sol2, decomp2
 
-            print("COST", sum([s[0] for s in sol1]))
-            print("time:", end=' ')
-            print(time.time() - begin)
+            #print("COST", sum([s[0] for s in sol1]))
+            #print("time:", print(time.time() - begin)
 
             if sum([s[0] for s in sol1]) >= Prev1:
                 break
