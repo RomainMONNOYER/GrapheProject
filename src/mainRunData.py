@@ -15,15 +15,15 @@ if __name__ == '__main__':
     AllSol = []
     begin = time.time()
 
-    N,B,E,quantities = readData("datas/data10.dat")
+    N,B,E,quantities = readData("datas/Challenge3.dat")
 
     #R_SAR_SAP_LS
     sol,decomp,_ = potion1.runPotion(N,B,E,quantities)
     AllSol.append({"sol":sol, "decomp":decomp, "cost":sum([s[0] for s in sol])})
 
     #R_SAR_SAP_LSG
-    #sol,decomp,_ = potion2.runPotion(N,B,E,quantities)
-    #AllSol.append({"sol":sol, "decomp":decomp, "cost":sum([s[0] for s in sol])})
+    sol,decomp,_ = potion2.runPotion(N,B,E,quantities)
+    AllSol.append({"sol":sol, "decomp":decomp, "cost":sum([s[0] for s in sol])})
 
     #RG_SAR_SAP_LSG
     sol,decomp,_ = potion3.runPotion(N,B,E,quantities)
@@ -34,15 +34,15 @@ if __name__ == '__main__':
     AllSol.append({"sol":sol, "decomp":decomp, "cost":sum([s[0] for s in sol])})
 
     #SAR_SAP_LSG
-    #sol,decomp,_ = potion5.runPotion(N,B,E,quantities)
-    #AllSol.append({"sol":sol, "decomp":decomp, "cost":sum([s[0] for s in sol])})
+    sol,decomp,_ = potion5.runPotion(N,B,E,quantities)
+    AllSol.append({"sol":sol, "decomp":decomp, "cost":sum([s[0] for s in sol])})
 
     min = 0
     for i in range(len(AllSol)):
         if AllSol[i]["cost"] < AllSol[min]["cost"]:
             min = i
 
-    printsol(AllSol[min]["sol"],AllSol[min]["decomp"],fileDest = "Groupe[9]-Challenge1.txt")
+    printsol(AllSol[min]["sol"],AllSol[min]["decomp"],fileDest = "Groupe[9]-Challenge3_essai4.txt")
     print(round(time.time()-begin, 3))
 
 
