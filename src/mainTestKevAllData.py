@@ -1,7 +1,7 @@
 from functions.lecture import *
 from functions.printSol import *
 
-import PotionR_SAR_SAP_LSG as potion
+import PotionSAR_SAP_LS as potion
 
 if __name__ == '__main__':
     best = [5243,8190,3897,9978,4966,15030,7194,239778,229428,226788]
