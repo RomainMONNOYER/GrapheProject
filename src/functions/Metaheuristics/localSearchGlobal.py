@@ -1,11 +1,10 @@
 from ..Splitter.adaptative import *
 import itertools
 
-def run(N,B,E,quantities,sol,decomp):
+def run(N,B,E,quantities,sol,decomp, step=1):
     # Setup s
     base = [x[0] for x in sol]
     value = sum(base)
-    step = 1
     V = [True]
 
     while V: # While neightbour are smaller or equal

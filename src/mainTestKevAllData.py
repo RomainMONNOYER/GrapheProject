@@ -1,16 +1,7 @@
 from functions.lecture import *
 from functions.printSol import *
-from src.functions.Base.BoxFiting import *
-from functions.Splitter.smartIncreasing import *
 
-import functions.Metaheuristics.localSearch as localSearch
-import functions.Metaheuristics.recuit as recuit
-import functions.Metaheuristics.tabou as tabou
-import functions.Metaheuristics.SARtabou as SARtabou
-
-import time
-
-import PotionSAR_SAP_LS as potion
+import PotionR_SAR_SAP_LSG as potion
 
 if __name__ == '__main__':
     best = [5243,8190,3897,9978,4966,15030,7194,239778,229428,226788]
