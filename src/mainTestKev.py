@@ -42,7 +42,7 @@ if __name__ == '__main__':
         if AllSol[i]["cost"] < AllSol[min]["cost"]:
             min = i
 
-    printsol(AllSol[min]["sol"],AllSol[min]["decomp"],fileDest = "temp.txt")
+    printsol(AllSol[min]["sol"],AllSol[min]["decomp"],fileDest = "Groupe[9]-Challenge1.txt")
     print(round(time.time()-begin, 3))
 
 
