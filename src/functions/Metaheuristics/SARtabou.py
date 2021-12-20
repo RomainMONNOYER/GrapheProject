@@ -27,6 +27,7 @@ def run(N,B,E,quantities,sol,decomp, minStep = 1, maxStep = 10, threshold = 2):
         for i in range(B): # Evaluate each canonic variation of the base (negative)
             tempbase = [x for x in base]
             tempbase[i] -= step
+            tempbase.sort(reverse=True)
             tempsol, tempdecomp = evaluate(N, B, E, quantities, tempbase, B - 1)
 
             if tempsol:

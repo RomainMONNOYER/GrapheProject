@@ -49,8 +49,8 @@ def runPotion(N,B,E,quantities):
 
                 if sum([s[0] for s in sol2]) >= Prev2:
                     break
-            compteur = 0
 
+            compteur = 0
             while True:
                 compteur += 1
                 Prev2 = sum([s[0] for s in sol2])
